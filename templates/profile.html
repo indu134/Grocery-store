@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Profile</title>
+  <!-- Add Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Profile</h1>
+    <form >
+      <div class="form-group">
+        <label for="uname">Username:</label>
+        <input type="text" class="form-control" id="uname" name="uname" value="{{user.username}}"required disabled readonly>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" id="email" name="email" value="{{user.email}}" required disabled readonly>
+      </div>
+
+      <div class="form-group">
+        <label for="uname">Wallet:</label>
+        <input type="text" class="form-control" id="uname" name="uname" value="{{user.wallet}}"required disabled readonly>
+      </div>
+    </form>
+
+  </div>
+
+  <!-- Add Bootstrap JS (Optional) -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

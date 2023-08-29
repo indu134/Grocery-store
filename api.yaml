@@ -1,0 +1,181 @@
+openapi: 3.0.0
+info:
+  title: Gorcery Store Appliction
+  description: This is simple Gorcery Store application in which  the users can buy  products and sellers can sell their products .
+  version: 1.0.0
+servers:
+  - url: http://127.0.0.1:5000
+paths:
+  /api/{manager_name}/{api_key}:
+    description: by using this path manager can see products and add new product
+    get:
+      tags:
+        -  CRUD on Product Database
+      description: Operation to Read  Products.
+      parameters:
+        - in: path
+          name: manager_name
+          required: true
+          schema:
+            type : string
+        - in : path
+          name: api_key
+          required : true 
+          schema:
+            type : string
+
+      responses:
+        '200':
+          description: Request Successful
+          content:
+            application/json:
+              schema:
+                  title: Categories
+                  type: object
+                  properties:
+                    "categort":
+                      type: string
+                      example: grocery
+                    "id":
+                      type: integer
+                      example: 1
+                    "name":
+                      type: string
+                      example: orange
+                    "price":
+                      type: string
+                      example: "34.40"
+                    "stock":
+                      type: integer
+                      example: 10
+    post:
+      tags:
+        -  CRUD on Product Database
+      description: Operation to create new product
+      parameters:
+        - in: path
+          name: manager_name
+          required: true
+          schema:
+            type : string
+        - in : path
+          name: api_key
+          required : true 
+          schema:
+            type : string
+  
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                category:
+                  type: string
+                name:
+                  type: string
+                stock:
+                  type: integer
+                price:
+                  type: string
+                photo:
+                  type: string
+                  format: binary
+                
+                
+      responses:
+        '200':
+          description: Successfuly created
+        '302' :
+          description : some fields are required
+
+                    
+                      
+
+  
+  /api/{manager_name}/{api_key}/{product_id}:
+    description: by using this path manager can update and delete the products
+    delete:
+      tags:
+        -  CRUD on Product Database
+      description: Operation to delete the product.
+      parameters:
+        - in: path
+          name: manager_name
+          required: true
+          schema:
+            type : string
+        - in : path
+          name: api_key
+          required : true 
+          schema:
+            type : string
+            
+        - in : path
+          name : product_id
+          required : true
+          schema : 
+            type : integer
+          
+      responses:
+        '200':
+          description: Request Successful
+          content:
+            application/json:
+              schema:
+                title: Category object
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Product deleted"
+        '404':
+          description: Product not fount
+          
+
+
+    put:
+      tags:
+        -  CRUD on Product Database
+      description: Operation to update the product details
+      parameters:
+        - in: path
+          name: manager_name
+          required: true
+          schema:
+            type : string
+        - in : path
+          name: api_key
+          required : true 
+          schema:
+            type : string
+            
+        - in : path
+          name : product_id
+          required : true
+          schema : 
+            type : integer
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                category:
+                  type: string
+                name:
+                  type: string
+                stock:
+                  type: integer
+                price:
+                  type: string
+                photo:
+                  type: string
+                  format: binary
+                
+                
+      responses:
+        '200':
+          description: Successfuly updated
+        '404':
+          description: Product not found
